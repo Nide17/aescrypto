@@ -1,12 +1,9 @@
-import json
 from base64 import b64encode
 from Crypto.Cipher import AES
-from Crypto.Util.Padding import pad
 from Crypto.Random import get_random_bytes
 from base64 import b64decode
-from Crypto.Util.Padding import unpad
 
-from flask import Flask, session, redirect, render_template, request, flash, url_for
+from flask import Flask, render_template, request, flash
 from flask_session import Session
 
 app = Flask(__name__)
@@ -32,27 +29,23 @@ def indexofb():
             cipher = AES.new(key, AES.MODE_OFB)
 
             ct_bytes = cipher.encrypt(data)
+            
+            # An initialization vector (IV) is an arbitrary number that can be used along with a 
+            # secret key for data encryption. 
+            # This number, also called a nonce, is employed only one time in any session.
 
             iv = b64encode(cipher.iv).decode('utf-8')
 
             ct = b64encode(ct_bytes).decode('utf-8')
 
-
-            # An initialization vector (IV) is an arbitrary number that can be used along with a 
-            # secret key for data encryption. 
-            # This number, also called a nonce, is employed only one time in any session.
-
             flash("Encrypted Successfully!", "msgOK")
             
-            print ('The encrypted message is: ' + ct)
-            
-            return render_template('indexofb.html', ct=ct);
+            return render_template('indexofb.html', ct=ct)
             
 
         if request.form.get("encrypted"):    
             
-            # We assume that the key was securely shared beforehand
-
+            # Let's assume that the key was securely shared beforehand
                 
             iv = b64decode(iv)
 
@@ -61,21 +54,16 @@ def indexofb():
             cipher = AES.new(key, AES.MODE_OFB, iv=iv)
 
             original_message = cipher.decrypt(ct).decode()
-
-            # print("The message was: ", original_message)
-
-            # ct = b64decode(bytes(request.form.get('encrypted')), encoding= 'utf-8')
-
-            # if request.form.get("encrypted"):
-            flash("Decrypted Successfully!", "msgOK")
-
-            return render_template('indexofb.html', original_message=original_message);
-                # print("The message was: ", original_message)
             
-            # return render_template('indexofb.html', original_message=original_message, ct=ct);
+            if original_message:
 
-            flash("Error in decryption!", "msgNotOK")
-            # print("Error in decryption!")
+                flash("Decrypted Successfully!", "msgOK")
+
+                return render_template('indexofb.html', original_message=original_message)
+            
+            else:
+                
+                flash("Error! Input are either not in this session or invalid at all!", "msgNotOK")
             
     return render_template('indexofb.html')        
             
