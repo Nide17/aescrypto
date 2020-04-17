@@ -1,0 +1,45 @@
+body {
+    font-size: 15px;
+    text-align: center;
+    background-color: rgb(192, 233, 201);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+textarea::placeholder {
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn1 {
+    padding: 5px;
+    font-size: 10px;
+    color: rgb(20, 14, 3);
+    background: #b7ecec;
+    border: none;
+    border-radius: 2px;
+}
+
+.msgNotOK {
+    margin: 5px auto;
+    padding: 5px;
+    border-radius: 5px;
+    color: #cc2727;
+    background: #dff0d8;
+    border: 1px solid #cc2727;
+    width: 50%;
+    text-align: center;
+    font-size: small;
+}
+
+.msgOK {
+    margin: 5px auto;
+    padding: 5px;
+    border-radius: 5px;
+    color: rgb(9, 250, 81);
+    background: #dff0d8;
+    border: 1px solid rgb(192, 233, 201);
+    width: 50%;
+    text-align: center;
+    font-size: small;
+}

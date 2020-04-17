@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AES ENCRYPTION AND DECRYPTION</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap_4.3.1_dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap_4.3.1_dist/css/style.css">
+    <link rel="stylesheet" href="/static/bootstrap_4.3.1_dist/css/font-awesome-4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-sm-12">
+                <header>
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                        <a class="navbar-brand" href="#">UNILAK</a>
+
+                        <div class="collapse navbar-collapse" id="navbarText">
+
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item"><a class="nav-link" href="/">M01409/2019</a></li>
+                            </ul>
+                            <ul class="navbar-nav mc-auto">
+                                <li class="nav-item"><a class="nav-link" href="/">Niyomwungeri Parmenide Ishimwe</a>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item"><a class="nav-link" href="#"
+                                        style="margin-right: 20px; color: floralwhite; font-family: Verdana, Geneva, Tahoma, sans-serif; font-weight: bolder;"><strong>IOSS_KGL_2020</strong></a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    </nav>
+
+                </header>
+            </div>
+        </div>
+        <h1 style="text-align: center;">AES ENCRYPTION AND DECRYPTION APP</h1><br>
+
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+
+        {% for category, message in messages %}
+        <div class="{{ category }}"> {{ message }} </div>
+        {% endfor %}
+
+        {% endif %}
+        {% endwith %}
+
+        <div class="row">
+
+            <div class="col-sm-6">
+                <h4 style="text-align: center;">Encryption</h4>
+
+                <div style="display: block; text-align: center;">
+
+                    <form action="/" method="POST" style="display: inline-block;">
+
+                        <div class="form-group row">
+                            <label for="message"></label> <br>
+                            <textarea name="message" id="" cols="90" rows="8" placeholder="Enter your plain text here ..."
+                                required></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <button type="submit" class="btn btn-info" style="border: chartreuse; display: inline;"
+                                value="Encrypt">Encrypt</button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <br>
+                {% if ct %}
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <strong>The encrypted text</strong><textarea class="form-control" name="view1" id="" cols="10" rows="2" disabled>
+             {{ ct }}
+        </textarea>
+                    </div>
+                </div>
+                {% endif %}
+                <br>
+            </div>
+
+            <div class="col-sm-6">
+                <h4 style="text-align: center;">Decryption</h4>
+
+                <div style="display: block; text-align: center;">
+
+                    <form action="/" method="POST" style="display: inline-block;">
+
+                        <div class="form-group row">
+                            <label for="encrypted"></label> <br>
+
+                            <textarea name="encrypted" cols="90" rows="8"
+                                placeholder="Enter your encrypted text here ..." required></textarea>
+                        </div>
+
+                        <div class="input-group" style="margin-top:500;">
+                            <button type="submit" class="btn btn-warning" style="border: chartreuse; display: inline;"
+                                id="Decrypt">Decrypt</button></div>
+                    </form>
+
+                </div>
+
+                <br>
+                {% if original_message %}
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <strong>The plaintext</strong> <textarea id="text-area" class="form-control" name="view2" id="" cols="10" rows="2" disabled>
+            {{ original_message }}
+        </textarea>
+                    </div>
+                </div>
+                {% endif %}
+                <br>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <footer style="background-color: aquamarine; height: 20px; text-align: center; color: black;">
+                    &copy; <strong>Niyomwungeri Parmenide Ishimwe</strong>
+                </footer>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</div>
